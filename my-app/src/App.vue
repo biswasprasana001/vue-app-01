@@ -1,29 +1,30 @@
+<!-- my-app\src\App.vue -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <CounterState />
-  <SampleRoute />
+  <ModalComponent @close="closeModal" :isVisible="isVisible" />
+  <button @click="isVisible = true" v-if="!isVisible">Open Modal</button>
+  <FormComponent />
 </template>
 
 <script>
-import CounterState from './components/CounterState.vue';
-import SampleRoute from './components/SampleRoutes.vue'
+
+import ModalComponent from './components/ModalComponent.vue';
+import FormComponent from './components/FormComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    CounterState,
-    SampleRoute
+    ModalComponent,
+    FormComponent,
+  },
+  data() {
+    return {
+      isVisible: false
+    }
+  },
+  methods: {
+    closeModal() {
+      this.isVisible = false
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
